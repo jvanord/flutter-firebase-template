@@ -1,10 +1,10 @@
-import 'package:firebase_template/views/home.dart';
-import 'package:firebase_template/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_template/blocs/authentication/bloc.dart';
-import 'package:firebase_template/blocs/dev_bloc_delegate.dart';
-import 'package:firebase_template/services/authentication_service.dart';
+import 'blocs/authentication/bloc.dart';
+import 'blocs/dev_bloc_delegate.dart';
+import 'services/authentication_service.dart';
+import 'views/home.dart';
+import 'views/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); // init before run

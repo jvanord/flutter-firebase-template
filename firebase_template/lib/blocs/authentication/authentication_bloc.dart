@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import '../../services/authentication_service.dart';
 import 'bloc.dart';
-import 'package:firebase_template/services/authentication_service.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

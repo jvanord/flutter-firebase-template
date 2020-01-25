@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_template/blocs/authentication/bloc.dart';
-import 'package:firebase_template/services/authentication_service.dart';
+import '../blocs/authentication/bloc.dart';
+import '../services/authentication_service.dart';
 
 class HomePage extends StatelessWidget {
   final UserInfo user;

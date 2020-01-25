@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_template/services/authentication_service.dart';
+import '../../services/authentication_service.dart';
 
 abstract class AuthenticationState extends Equatable {
   const AuthenticationState();

@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'blocs/authentication/bloc.dart';
 import 'blocs/dev_bloc_delegate.dart';
 import 'services/authentication_service.dart';
-import 'views/home.dart';
 import 'views/splash_screen.dart';
+import 'views/home.dart';
+import 'views/signin.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); // init before run
@@ -32,17 +33,13 @@ class TemplateApp extends StatelessWidget {
         ),
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
-            if (state is Uninitialized) {
-              return SplashScreen();
+            if (state is Unauthenticated) {
+              return LoginScreen(authService: _authService);
             }
             if (state is Authenticated) {
               return HomePage(user: state.user);
             }
-            return Container(
-              child: Center(
-                child: Text('State failure on load.'),
-              ),
-            );
+            return SplashScreen(); // default
           },
         ));
   }

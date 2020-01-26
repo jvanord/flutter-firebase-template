@@ -121,7 +121,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isPasswordValid ? 'Invalid Password' : null;
+                      return !state.isPasswordValid ? 'Password Too Short' : null;
                     },
                   ),
                   RegistrationButton(

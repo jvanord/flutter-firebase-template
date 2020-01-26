@@ -11,6 +11,7 @@ class Validators {
   }
 
   static isValidPassword(String password) {
+    return password.length > 5; // let people use their damn passwords
     return _passwordRegExp.hasMatch(password);
   }
 }

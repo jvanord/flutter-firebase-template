@@ -12,7 +12,7 @@ void main() {
   BlocSupervisor.delegate = DevBlocDelegate(); // use in-dev delegate to observe
   final AuthService authService = AuthService();
   runApp(BlocProvider<AuthenticationBloc>(
-    create: (context) => AuthenticationBloc(authService)..add(AppStarted()),
+    create: (context) => AuthenticationBloc(authService), // ..add(AppStarted()), - don't start until we show the splash screen
     child: TemplateApp(injectedAuthService: authService),
   ));
 }
@@ -31,6 +31,7 @@ class TemplateApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        debugShowCheckedModeBanner: false,
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state is Unauthenticated) {
@@ -39,6 +40,8 @@ class TemplateApp extends StatelessWidget {
             if (state is Authenticated) {
               return HomePage(user: state.user);
             }
+            // send "start" event and show Splash
+            BlocProvider.of<AuthenticationBloc>(context).add(AppStarted());
             return SplashScreen(); // default
           },
         ));

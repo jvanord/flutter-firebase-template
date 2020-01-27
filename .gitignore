@@ -20,3 +20,5 @@ doc/api/
 *.js.deps
 *.js.map
 firebase_template/ios/Runner/*.plist
+_TODO.txt
+firebase_template/android/app/google-services.json

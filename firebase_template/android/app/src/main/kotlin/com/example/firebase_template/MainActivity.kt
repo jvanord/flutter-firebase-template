@@ -1,4 +1,4 @@
-package com.example.firebase_template
+package com.indasys.firebaseTemplate
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

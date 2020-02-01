@@ -108,7 +108,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
+                      return state.emailValidationStatus.isValid ? null : state.emailValidationStatus.message;
                     },
                   ),
                   TextFormField(
@@ -121,7 +121,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isPasswordValid ? 'Password Too Short' : null;
+                      return state.passwordValidationStatus.isValid ? null : state.passwordValidationStatus.message;
                     },
                   ),
                   RegistrationButton(

@@ -117,7 +117,7 @@ class _LoginFormState extends State<LoginForm> {
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
+                      return state.emailValidationStatus.isValid ? null : state.emailValidationStatus.message;
                     },
                   ),
                   TextFormField(
@@ -130,7 +130,7 @@ class _LoginFormState extends State<LoginForm> {
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
-                      return !state.isPasswordValid ? 'Password Too Short' : null;
+                      return state.passwordValidationStatus.isValid ? null : state.passwordValidationStatus.message;
                     },
                   ),
                   Padding(

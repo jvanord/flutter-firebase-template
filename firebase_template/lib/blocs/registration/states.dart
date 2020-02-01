@@ -1,18 +1,19 @@
 import 'package:meta/meta.dart';
+import '../../helpers/validators.dart';
 
 @immutable
 class RegistrationState {
-  final bool isEmailValid;
-  final bool isPasswordValid;
+  final ValidationResult emailValidationStatus;
+  final ValidationResult passwordValidationStatus;
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
 
-  bool get isFormValid => isEmailValid && isPasswordValid;
+  bool get isFormValid => emailValidationStatus.isValid && passwordValidationStatus.isValid;
 
   RegistrationState({
-    @required this.isEmailValid,
-    @required this.isPasswordValid,
+    @required this.emailValidationStatus,
+    @required this.passwordValidationStatus,
     @required this.isSubmitting,
     @required this.isSuccess,
     @required this.isFailure,
@@ -20,8 +21,8 @@ class RegistrationState {
 
   factory RegistrationState.empty() {
     return RegistrationState(
-      isEmailValid: true,
-      isPasswordValid: true,
+      emailValidationStatus: ValidationResult.success(),
+      passwordValidationStatus: ValidationResult.success(),
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
@@ -30,8 +31,8 @@ class RegistrationState {
 
   factory RegistrationState.loading() {
     return RegistrationState(
-      isEmailValid: true,
-      isPasswordValid: true,
+      emailValidationStatus: ValidationResult.success(),
+      passwordValidationStatus: ValidationResult.success(),
       isSubmitting: true,
       isSuccess: false,
       isFailure: false,
@@ -40,8 +41,8 @@ class RegistrationState {
 
   factory RegistrationState.failure() {
     return RegistrationState(
-      isEmailValid: true,
-      isPasswordValid: true,
+      emailValidationStatus: ValidationResult.success(),
+      passwordValidationStatus: ValidationResult.success(),
       isSubmitting: false,
       isSuccess: false,
       isFailure: true,
@@ -50,8 +51,8 @@ class RegistrationState {
 
   factory RegistrationState.success() {
     return RegistrationState(
-      isEmailValid: true,
-      isPasswordValid: true,
+      emailValidationStatus: ValidationResult.success(),
+      passwordValidationStatus: ValidationResult.success(),
       isSubmitting: false,
       isSuccess: true,
       isFailure: false,
@@ -59,12 +60,12 @@ class RegistrationState {
   }
 
   RegistrationState update({
-    bool isEmailValid,
-    bool isPasswordValid,
+    ValidationResult emailValidationStatus,
+    ValidationResult passwordValidationStatus,
   }) {
     return copyWith(
-      isEmailValid: isEmailValid,
-      isPasswordValid: isPasswordValid,
+      emailValidationStatus: emailValidationStatus,
+      passwordValidationStatus: passwordValidationStatus,
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
@@ -72,16 +73,16 @@ class RegistrationState {
   }
 
   RegistrationState copyWith({
-    bool isEmailValid,
-    bool isPasswordValid,
+    ValidationResult emailValidationStatus,
+    ValidationResult passwordValidationStatus,
     bool isSubmitEnabled,
     bool isSubmitting,
     bool isSuccess,
     bool isFailure,
   }) {
     return RegistrationState(
-      isEmailValid: isEmailValid ?? this.isEmailValid,
-      isPasswordValid: isPasswordValid ?? this.isPasswordValid,
+      emailValidationStatus: emailValidationStatus ?? this.emailValidationStatus,
+      passwordValidationStatus: passwordValidationStatus ?? this.passwordValidationStatus,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,
       isFailure: isFailure ?? this.isFailure,
@@ -91,8 +92,8 @@ class RegistrationState {
   @override
   String toString() {
     return '''RegistrationState {
-      isEmailValid: $isEmailValid,
-      isPasswordValid: $isPasswordValid,
+      isEmailValid: ${emailValidationStatus.isValid},
+      isPasswordValid: ${passwordValidationStatus.isValid},
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,

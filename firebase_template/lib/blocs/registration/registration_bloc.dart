@@ -48,13 +48,13 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
 
   Stream<RegistrationState> _mapEmailChangedToState(String email) async* {
     yield state.update(
-      isEmailValid: Validators.isValidEmail(email),
+      emailValidationStatus: email.length == 0 ? ValidationResult.unknown() : Validators.isValidEmail(email),
     );
   }
 
   Stream<RegistrationState> _mapPasswordChangedToState(String password) async* {
     yield state.update(
-      isPasswordValid: Validators.isValidPassword(password),
+      passwordValidationStatus: password.length == 0 ? ValidationResult.unknown() : Validators.isValidPassword(password),
     );
   }
 

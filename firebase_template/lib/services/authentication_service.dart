@@ -64,7 +64,9 @@ class UserInfo {
   String email;
   String photo;
   UserInfo(FirebaseUser user) {
-    this.name = user.displayName;
+    this.name = user.displayName
+      ?? user.email
+      ?? '${user.providerId} User ${user.uid}';
     this.email = user.email;
     this.photo = user.photoUrl;
   }

@@ -40,8 +40,10 @@ class TemplateApp extends StatelessWidget {
             if (state is Authenticated) {
               return HomePage(user: state.user);
             }
-            // send "start" event and show Splash
-            BlocProvider.of<AuthenticationBloc>(context).add(AppStarted());
+            // show Splash and start app (after a pause for effect)
+            Future.delayed(const Duration(seconds: 2)).whenComplete(() =>
+              BlocProvider.of<AuthenticationBloc>(context).add(AppStarted())
+            );
             return SplashScreen(); // default
           },
         ));

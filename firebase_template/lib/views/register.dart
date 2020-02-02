@@ -101,27 +101,35 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      labelText: 'Email',
-                    ),
+                        icon: Icon(Icons.email),
+                        labelText: 'Email',
+                        suffixIcon: IconButton(
+                            onPressed: () => _emailController.clear(),
+                            icon: Icon(Icons.clear))),
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return state.emailValidationStatus.isValid ? null : state.emailValidationStatus.message;
+                      return state.emailValidationStatus.isValid
+                          ? null
+                          : state.emailValidationStatus.message;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'Password',
-                    ),
+                        icon: Icon(Icons.lock),
+                        labelText: 'Password',
+                        suffixIcon: IconButton(
+                            onPressed: () => _passwordController.clear(),
+                            icon: Icon(Icons.clear))),
                     obscureText: true,
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return state.passwordValidationStatus.isValid ? null : state.passwordValidationStatus.message;
+                      return state.passwordValidationStatus.isValid
+                          ? null
+                          : state.passwordValidationStatus.message;
                     },
                   ),
                   RegistrationButton(

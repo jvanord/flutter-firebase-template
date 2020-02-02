@@ -110,27 +110,35 @@ class _LoginFormState extends State<LoginForm> {
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      labelText: 'Email',
-                    ),
+                        icon: Icon(Icons.email),
+                        labelText: 'Email',
+                        suffixIcon: IconButton(
+                            onPressed: () => _emailController.clear(),
+                            icon: Icon(Icons.clear))),
                     keyboardType: TextInputType.emailAddress,
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
-                      return state.emailValidationStatus.isValid ? null : state.emailValidationStatus.message;
+                      return state.emailValidationStatus.isValid
+                          ? null
+                          : state.emailValidationStatus.message;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'Password',
-                    ),
+                        icon: Icon(Icons.lock),
+                        labelText: 'Password',
+                        suffixIcon: IconButton(
+                            onPressed: () => _passwordController.clear(),
+                            icon: Icon(Icons.clear))),
                     obscureText: true,
                     autovalidate: true,
                     autocorrect: false,
                     validator: (_) {
-                      return state.passwordValidationStatus.isValid ? null : state.passwordValidationStatus.message;
+                      return state.passwordValidationStatus.isValid
+                          ? null
+                          : state.passwordValidationStatus.message;
                     },
                   ),
                   Padding(
